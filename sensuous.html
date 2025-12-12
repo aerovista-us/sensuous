@@ -1,0 +1,1059 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sensuous Sessions — GrandMom Edition</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050712;
+      --bg-soft: #101423;
+      --panel: #14182a;
+      --panel-soft: #1a1f35;
+      --accent: #f7a6d1;
+      --accent-strong: #ffd4f3;
+      --accent-soft: rgba(247, 166, 209, 0.12);
+      --gold: #ffcf7a;
+      --frost: #9fd5ff;
+      --text-main: #f8f5ff;
+      --text-soft: #c4cbe6;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --shadow-soft: 0 28px 60px rgba(0, 0, 0, 0.9);
+      --radius-xl: 26px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --transition-fast: 140ms ease-out;
+      --transition-med: 220ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                   "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #334b7a 0, transparent 55%),
+        radial-gradient(circle at bottom right, #241b3c 0, transparent 55%),
+        linear-gradient(180deg, #050712, #02030a);
+      color: var(--text-main);
+      padding: 20px;
+      display: block;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto 24px;
+      background: radial-gradient(circle at top, #191c38 0, #050712 70%);
+      border-radius: 32px;
+      border: 1px solid rgba(159, 213, 255, 0.25);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+      position: relative;
+      isolation: isolate;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 10px;
+      }
+
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 22px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      }
+    }
+
+    /* subtle snow sparkle */
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.18) 0, transparent 55%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.09) 0, transparent 60%);
+      background-size: 260px 260px, 420px 420px;
+      background-position: -40px -20px, 80% 120%;
+      opacity: 0.15;
+      mix-blend-mode: screen;
+    }
+
+    .hero,
+    .side {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      padding: 18px 16px 14px;
+      border-right: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at top left, #2b355b 0, transparent 55%),
+        radial-gradient(circle at bottom right, #111427 0, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 16px 14px 12px;
+      }
+    }
+
+    .side {
+      padding: 18px 16px 14px;
+      background:
+        radial-gradient(circle at top, #263055 0, transparent 55%),
+        linear-gradient(160deg, #060818, #040412);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .side {
+        padding: 14px 14px 14px;
+      }
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(7, 9, 22, 0.9);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #5cf2e3;
+      box-shadow: 0 0 10px rgba(92, 242, 227, 0.9);
+    }
+
+    .pill-frost {
+      border-color: rgba(159, 213, 255, 0.6);
+      color: var(--frost);
+    }
+
+    h1 {
+      margin: 6px 0 0;
+      font-size: clamp(22px, 5vw, 32px);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+      margin-top: 4px;
+      max-width: 36rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero-sub {
+        font-size: 12px;
+      }
+    }
+
+    .hero-sub strong {
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-meta {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(10, 11, 30, 0.9);
+    }
+
+    .hero-layout {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 5fr);
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 800px) {
+      .hero-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Video */
+
+    .video-shell {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: radial-gradient(circle at top, #27385f 0, #050712 60%);
+      border: 1px solid var(--border-strong);
+      min-height: 180px;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85);
+    }
+
+    @media (max-width: 600px) {
+      .video-shell {
+        min-height: 160px;
+      }
+    }
+
+    .video-shell video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(0, 0, 0, 0.15) 0, transparent 45%),
+        linear-gradient(to top, rgba(5, 7, 18, 0.88), transparent 55%);
+      pointer-events: none;
+    }
+
+    /* Playlist + Player */
+
+    .playlist-panel {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #28315a 0, #11162a 65%);
+      border: 1px solid var(--border-strong);
+      padding: 9px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85);
+    }
+
+    @media (max-width: 600px) {
+      .playlist-panel {
+        padding: 8px 8px 8px;
+      }
+    }
+
+    .playlist-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 3px 4px 4px;
+      gap: 6px;
+    }
+
+    .playlist-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .playlist-sub {
+      font-size: 11px;
+      color: var(--text-soft);
+      opacity: 0.86;
+      text-align: right;
+    }
+
+    .track-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .track-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      background: linear-gradient(
+        135deg,
+        rgba(11, 14, 32, 0.96),
+        rgba(7, 9, 23, 0.96)
+      );
+      cursor: pointer;
+      transition:
+        background var(--transition-med),
+        border-color var(--transition-med),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    @media (max-width: 600px) {
+      .track-row {
+        padding: 8px 9px;
+      }
+    }
+
+    .track-row:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(18, 22, 45, 0.98),
+        rgba(10, 13, 30, 0.98)
+      );
+      border-color: rgba(159, 213, 255, 0.5);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
+    }
+
+    .track-row.is-active {
+      border-color: var(--accent);
+      background: radial-gradient(
+        circle at top left,
+        rgba(247, 166, 209, 0.22),
+        rgba(10, 12, 28, 0.98)
+      );
+      box-shadow:
+        0 0 0 1px rgba(247, 166, 209, 0.16),
+        0 12px 28px rgba(0, 0, 0, 0.9);
+    }
+
+    .track-index {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      flex-shrink: 0;
+    }
+
+    .track-row.is-active .track-index {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+    }
+
+    .track-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .track-title {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-sub {
+      font-size: 11px;
+      color: var(--text-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 600px) {
+      .track-title {
+        font-size: 12px;
+      }
+      .track-sub {
+        font-size: 10px;
+      }
+    }
+
+    .track-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      align-items: flex-end;
+      font-size: 10px;
+      color: var(--text-soft);
+      flex-shrink: 0;
+    }
+
+    .track-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(10, 11, 30, 0.96);
+    }
+
+    .track-time {
+      opacity: 0.86;
+    }
+
+    .player-strip {
+      margin-top: 7px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #242b51, #151a33);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 9px 10px 9px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    @media (max-width: 600px) {
+      .player-strip {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        row-gap: 6px;
+      }
+    }
+
+    .player-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: radial-gradient(circle at top, #f7a6d1, #d774a9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+      color: #2a0f21;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .player-btn:hover {
+      transform: translateY(-1px) scale(1.03);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.95);
+      filter: brightness(1.05);
+    }
+
+    .player-track-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .player-name {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-sub {
+      font-size: 11px;
+      color: var(--text-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .seek-wrap {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .seek-fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f7a6d1, #ffcf7a);
+    }
+
+    .player-time {
+      font-size: 11px;
+      color: var(--text-soft);
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      .player-time {
+        grid-column: 1 / -1;
+        text-align: right;
+        font-size: 10px;
+      }
+    }
+
+    /* Side / Messages */
+
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-top: 2px;
+    }
+
+    .lyrics-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .lyrics-label {
+      margin-top: 2px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    @media (max-width: 600px) {
+      .lyrics-label {
+        font-size: 10px;
+      }
+    }
+
+    .lyrics-box {
+      margin-top: 6px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-strong);
+      background: radial-gradient(circle at top left, #252c52 0, #070916 60%);
+      padding: 10px 11px 9px;
+      font-size: 13px;
+      line-height: 1.55;
+      max-height: 360px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+    }
+
+    @media (max-width: 600px) {
+      .lyrics-box {
+        max-height: 280px;
+        font-size: 12px;
+      }
+    }
+
+    .lyrics-box::-webkit-scrollbar {
+      width: 6px;
+    }
+    .lyrics-box::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .lyrics-box::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.28);
+      border-radius: 999px;
+    }
+
+    .lyrics-box h3 {
+      font-size: 12px;
+      margin: 4px 0 4px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .lyrics-box p {
+      margin: 0 0 8px;
+      white-space: pre-line;
+    }
+
+    .lyrics-empty {
+      font-size: 12px;
+      color: var(--text-soft);
+      opacity: 0.88;
+    }
+
+    /* simple fade/slide animation when message changes */
+    @keyframes messageFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lyrics-box.msg-animate {
+      animation: messageFadeUp 320ms ease-out;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .info-chip {
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(9, 10, 25, 0.92);
+    }
+
+    .footer-note {
+      margin-top: 6px;
+      font-size: 10px;
+      color: var(--text-soft);
+      opacity: 0.7;
+    }
+
+    code {
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono",
+                   "Courier New", monospace;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- LEFT: Hero + Video + Playlist + Player -->
+    <section class="hero">
+      <div class="pill-row">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Sensuous Sessions</span>
+        </div>
+        <div class="pill pill-frost">
+          Winter Stories · GrandMom Edition
+        </div>
+      </div>
+
+      <h1>Four Songs for GrandMom</h1>
+      <p class="hero-sub">
+        A little holiday album built around one woman, one favorite word
+        — <strong>“sensuous”</strong> — and all the ways she turned ordinary days
+        into soft, glowing memories.  
+        From dance-floor fun to deep thank-you, each track is a
+        <strong>grown-folk love letter</strong> to the woman who raised a fighter and
+        still kept the lights warm.
+      </p>
+
+      <div class="hero-meta-row">
+        <span class="hero-meta">4-track holiday set · Private family link</span>
+        <span class="hero-meta">Best with headphones, cocoa, and a blanket</span>
+      </div>
+
+      <div class="hero-layout">
+        <!-- Looping video -->
+        <div class="video-shell">
+          <!-- Replace vid.mp4 with your real video file or URL -->
+          <video id="loopVideo" src="vid.mp4" autoplay loop muted playsinline></video>
+          <div class="video-overlay"></div>
+        </div>
+
+        <!-- Playlist + Player -->
+        <div class="playlist-panel">
+          <div class="playlist-header">
+            <div class="playlist-title">Playlist</div>
+            <div class="playlist-sub"><span id="trackCountLabel">Loading tracks…</span></div>
+          </div>
+
+          <ul class="track-list" id="trackList">
+            <!-- Track 1: GrandMom’s Got the Mistletoe Move -->
+            <li class="track-row is-active"
+                data-file="1.mp3"
+                data-title="GrandMom’s Got the Mistletoe Move"
+                data-subtitle="Festive groove · Holiday starter"
+                data-duration="3:10"
+                data-lyrics="lyrics-1">
+              <div class="track-index">1</div>
+              <div class="track-main">
+                <div class="track-title">GrandMom’s Got the Mistletoe Move</div>
+                <div class="track-sub">First-song energy · kitchen dance-floor</div>
+              </div>
+              <div class="track-meta">
+                <div class="track-tag">Holiday · Fun</div>
+                <div class="track-time">3:10</div>
+              </div>
+            </li>
+
+            <!-- Track 2: Sensuous (Since You Was) -->
+            <li class="track-row"
+                data-file="2.mp3"
+                data-title="Sensuous (Since You Was)"
+                data-subtitle="Slow R&B · Grandma Theme"
+                data-duration="3:20"
+                data-lyrics="lyrics-2">
+              <div class="track-index">2</div>
+              <div class="track-main">
+                <div class="track-title">Sensuous (Since You Was)</div>
+                <div class="track-sub">Warm, cozy tribute to her favorite word</div>
+              </div>
+              <div class="track-meta">
+                <div class="track-tag">Warm · Story</div>
+                <div class="track-time">3:20</div>
+              </div>
+            </li>
+
+            <!-- Track 3: Grandma Said “Sensuous” -->
+            <li class="track-row"
+                data-file="3.mp3"
+                data-title="Grandma Said “Sensuous”"
+                data-subtitle="Country bop · Rock & sway"
+                data-duration="3:05"
+                data-lyrics="lyrics-3">
+              <div class="track-index">3</div>
+              <div class="track-main">
+                <div class="track-title">Grandma Said “Sensuous”</div>
+                <div class="track-sub">Country-rock grin · word turned into a groove</div>
+              </div>
+              <div class="track-meta">
+                <div class="track-tag">Country · Fun</div>
+                <div class="track-time">3:05</div>
+              </div>
+            </li>
+
+            <!-- Track 4: GrandMom (I Get It Now) -->
+            <li class="track-row"
+                data-file="4.mp3"
+                data-title="GrandMom (I Get It Now)"
+                data-subtitle="Emotional ballad · Thank-you"
+                data-duration="3:40"
+                data-lyrics="lyrics-4">
+              <div class="track-index">4</div>
+              <div class="track-main">
+                <div class="track-title">GrandMom (I Get It Now)</div>
+                <div class="track-sub">Closer · grown-woman thank-you</div>
+              </div>
+              <div class="track-meta">
+                <div class="track-tag">Tear-tug · Closer</div>
+                <div class="track-time">3:40</div>
+              </div>
+            </li>
+          </ul>
+
+          <div class="player-strip">
+            <button class="player-btn" id="playPauseBtn" aria-label="Play or pause">
+              ▷
+            </button>
+            <div class="player-track-info">
+              <div class="player-name" id="playerTrackName">GrandMom’s Got the Mistletoe Move</div>
+              <div class="player-sub" id="playerTrackSub">Festive groove · Holiday starter</div>
+              <div class="seek-wrap" id="seekBar">
+                <div class="seek-fill" id="seekFill"></div>
+              </div>
+            </div>
+            <div class="player-time" id="playerTime">0:00 / 3:10</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Personal Messages + Info -->
+    <section class="side">
+      <div class="lyrics-head">
+        <div>
+          <div class="section-title">Personal Message</div>
+          <div class="lyrics-label" id="lyricsTrackLabel">
+            Track 1 · GrandMom’s Got the Mistletoe Move
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.14em;">
+          Tap a track on the left to change
+        </div>
+      </div>
+
+      <div class="lyrics-box" id="lyricsBox">
+        <!-- Filled by JS -->
+      </div>
+
+      <div class="info-row">
+        <div class="info-chip">Best for: Headphones · Evening · Low lights</div>
+        <div class="info-chip">Built as: A 4-song thank-you album, just for you</div>
+      </div>
+
+      <p class="footer-note">
+        To adjust the notes, edit the text inside each
+        <code>&lt;template&gt;</code> below. Each track has its own message.
+      </p>
+    </section>
+  </main>
+
+  <!-- Hidden audio element -->
+  <audio id="audioPlayer" preload="metadata">
+    <source src="1.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- PERSONAL MESSAGE TEMPLATES -->
+
+  <!-- Track 1 message — GrandMom’s Got the Mistletoe Move -->
+  <template id="lyrics-1">
+    <h3>Track 1 · The Holiday Starter</h3>
+    <p>
+This first song is exactly how we picture you when the season hits:
+slippers on, treats in the oven, and that “don’t just sit there, get up and move” sparkle
+in your eyes. It’s the soundtrack for when the living room quietly turns into a
+dance floor and somehow you’re the one leading the whole thing.
+    </p>
+    <p>
+If your foot starts tapping or your shoulders start swaying, that’s on purpose.
+We made this one to feel like your kind of party: warm, playful, and just bold enough
+to make everyone else stand up too.
+    </p>
+  </template>
+
+  <!-- Track 2 message — Sensuous (Since You Was) -->
+  <template id="lyrics-2">
+    <h3>Track 2 · Your Favorite Word</h3>
+    <p>
+This song is our little love letter to the way you use the word “sensuous.”
+Not fancy, not dramatic—just soft, warm, and exactly right. When you say it,
+it sounds like comfort, good food, good music, and a house full of people who
+know they’re welcome.
+    </p>
+    <p>
+While this track plays, we hope you hear what we’ve always seen:
+the way you slow a room down, the way you turn regular evenings into something
+worth remembering. It’s not about romance—it’s about the way your presence
+makes life feel richer and more alive.
+    </p>
+  </template>
+
+  <!-- Track 3 message — Grandma Said “Sensuous” -->
+  <template id="lyrics-3">
+    <h3>Track 3 · Turning It Into a Groove</h3>
+    <p>
+This one is the playful side of you—the version of “sensuous” that shows up
+with the radio a little too loud and the windows cracked even when it’s chilly.
+It’s the word turned into a rhythm: country, a little rock, a little sway,
+and a whole lot of “go on and live a little.”
+    </p>
+    <p>
+We made this track for the moments when you laugh, tell us to be careful,
+and then do something a little wild and wonderful yourself. If it makes you grin
+or say, “Play that again,” then it’s doing its job.
+    </p>
+  </template>
+
+  <!-- Track 4 message — GrandMom (I Get It Now) -->
+  <template id="lyrics-4">
+    <h3>Track 4 · The Thank-You</h3>
+    <p>
+This closer is for the parts of the story that only make sense looking back.
+It’s for the late nights, the boundaries, the hard choices, and the way you stayed
+when staying wasn’t easy. It’s a grown woman finally saying:
+“I see what you did for me. I get it now.”
+    </p>
+    <p>
+If this one tugs at your heart, just know that’s us reaching across all those years
+to wrap our arms around you in song. You didn’t just raise a child—you helped shape
+a strong, independent woman. This track is her thank-you.
+    </p>
+  </template>
+
+  <script>
+    (function () {
+      const audio = document.getElementById("audioPlayer");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const trackList = document.getElementById("trackList");
+      const playerTrackName = document.getElementById("playerTrackName");
+      const playerTrackSub = document.getElementById("playerTrackSub");
+      const playerTime = document.getElementById("playerTime");
+      const seekBar = document.getElementById("seekBar");
+      const seekFill = document.getElementById("seekFill");
+      const lyricsBox = document.getElementById("lyricsBox");
+      const lyricsTrackLabel = document.getElementById("lyricsTrackLabel");
+      const trackCountLabel = document.getElementById("trackCountLabel");
+      const loopVideo = document.getElementById("loopVideo");
+
+      const trackRows = Array.from(trackList.querySelectorAll(".track-row"));
+      let currentRow = trackRows.find(row => row.classList.contains("is-active")) || trackRows[0];
+      let isSeeking = false;
+
+      // slow the loop video
+      if (loopVideo) {
+        const setVideoRate = () => {
+          try {
+            loopVideo.playbackRate = 0.25;
+          } catch (e) {}
+        };
+        setVideoRate();
+        loopVideo.addEventListener("loadedmetadata", setVideoRate);
+      }
+
+      function formatTime(sec) {
+        if (!isFinite(sec)) return "0:00";
+        const s = Math.floor(sec % 60);
+        const m = Math.floor(sec / 60);
+        return m + ":" + String(s).padStart(2, "0");
+      }
+
+      function setPlayIcon() {
+        playPauseBtn.textContent = audio.paused ? "▷" : "❚❚";
+      }
+
+      function updatePlayerTime() {
+        const t = audio.currentTime || 0;
+        const d = audio.duration || 0;
+        const durationText = isFinite(d)
+          ? formatTime(d)
+          : (currentRow.dataset.duration || "--:--");
+
+        playerTime.textContent = formatTime(t) + " / " + durationText;
+
+        if (!isSeeking) {
+          const pct = d ? (t / d) * 100 : 0;
+          seekFill.style.width = pct + "%";
+        }
+      }
+
+      function loadLyrics(row) {
+        const id = row.dataset.lyrics;
+        const tpl = document.getElementById(id);
+        if (tpl) {
+          lyricsBox.classList.remove("msg-animate");
+          void lyricsBox.offsetWidth;
+          lyricsBox.innerHTML = tpl.innerHTML;
+          lyricsBox.classList.add("msg-animate");
+        } else {
+          lyricsBox.classList.remove("msg-animate");
+          lyricsBox.innerHTML = '<p class="lyrics-empty">Message not available for this track yet.</p>';
+          lyricsBox.classList.add("msg-animate");
+        }
+        lyricsTrackLabel.textContent = "Track " + row.querySelector(".track-index").textContent +
+          " · " + (row.dataset.title || row.querySelector(".track-title").textContent);
+      }
+
+      function loadTrack(row, autoPlay) {
+        if (!row) return;
+        currentRow = row;
+
+        trackRows.forEach(r => r.classList.remove("is-active"));
+        row.classList.add("is-active");
+
+        const file = row.dataset.file;
+        const title = row.dataset.title || row.querySelector(".track-title").textContent;
+        const subtitle = row.dataset.subtitle || row.querySelector(".track-sub").textContent;
+        const duration = row.dataset.duration || "--:--";
+
+        audio.pause();
+        audio.src = file;
+        audio.load();
+
+        playerTrackName.textContent = title;
+        playerTrackSub.textContent = subtitle;
+        playerTime.textContent = "0:00 / " + duration;
+        seekFill.style.width = "0%";
+
+        loadLyrics(row);
+
+        if (autoPlay) {
+          audio.play().catch(() => {});
+        }
+
+        setPlayIcon();
+      }
+
+      // Track list click handler
+      trackList.addEventListener("click", function (e) {
+        const row = e.target.closest(".track-row");
+        if (!row) return;
+        loadTrack(row, true);
+      });
+
+      // Play/pause toggle
+      playPauseBtn.addEventListener("click", function () {
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        } else {
+          audio.pause();
+        }
+      });
+
+      // Audio events
+      audio.addEventListener("play", setPlayIcon);
+      audio.addEventListener("pause", setPlayIcon);
+      audio.addEventListener("timeupdate", updatePlayerTime);
+      audio.addEventListener("loadedmetadata", updatePlayerTime);
+      audio.addEventListener("ended", function () {
+        setPlayIcon();
+      });
+
+      // Seek bar
+      function handleSeek(clientX) {
+        const rect = seekBar.getBoundingClientRect();
+        const ratio = (clientX - rect.left) / rect.width;
+        if (isFinite(audio.duration)) {
+          const clamped = Math.max(0, Math.min(1, ratio));
+          audio.currentTime = audio.duration * clamped;
+        }
+      }
+
+      seekBar.addEventListener("click", function (e) {
+        handleSeek(e.clientX);
+      });
+
+      seekBar.addEventListener("mousedown", function () {
+        isSeeking = true;
+      });
+
+      document.addEventListener("mouseup", function () {
+        isSeeking = false;
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        if (!isSeeking) return;
+        handleSeek(e.clientX);
+      });
+
+      // Init
+      if (trackRows.length) {
+        loadTrack(currentRow, false);
+        trackCountLabel.textContent = trackRows.length + " tracks · holiday family set";
+      } else {
+        lyricsBox.innerHTML = '<p class="lyrics-empty">No tracks found. Add <code>.track-row</code> items to begin.</p>';
+        trackCountLabel.textContent = "No tracks yet";
+      }
+    })();
+  </script>
+</body>
+</html>
